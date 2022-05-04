@@ -1,0 +1,13 @@
+$color-yellow: yellow;
+$color-black: #000;
+
+.yellow {
+    width: 200px;
+    height: 200px;
+    background-color: $color-yellow;
+    .black{
+        background-color: $color-black;
+        width: 100px;
+        height: 100px;
+    }
+}
