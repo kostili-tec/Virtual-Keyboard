@@ -10,6 +10,20 @@ function createDiv(container) {
   container.appendChild(header1);
 }
 
+function createContainer(parent) {
+  const container = document.createElement('div');
+  container.className = 'container';  
+  parent.appendChild(container);
+  return container;
+}
+
+function createElement(typeEl, className, parent) {
+  const element = document.createElement(`${typeEl}`);
+  element.className = `${className}`;
+  parent.appendChild(element);
+  return element;
+}
+
 export default {
-  createDiv,
+  createDiv, createContainer, createElement
 };

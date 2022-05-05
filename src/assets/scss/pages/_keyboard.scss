@@ -9,3 +9,39 @@
         height: 100px;
     }
 }
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.textarea {
+    width: 700px;
+    height: 200px;
+    margin: 10px;
+}
+.key__container{
+    display: flex;
+    width: 700px;
+    margin: 10px;
+}
+.row-key__container{
+    display: flex;
+    gap: 10px;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 3px;
+    background-color: $color-button;
+    color: $color-buttonText;
+    cursor: pointer;
+}
