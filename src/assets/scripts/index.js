@@ -6,11 +6,9 @@ import '../scss/main.scss';
 
 
 const { createDiv, createContainer, createElement } = nodeMaker;
-const {keysObjEn} = keysObj['en'];
 
-const {createKeys} = keysMaker;
+const {createKeys, actionKeysArr} = keysMaker;
 
-console.log(keysObjEn);
 
 const BODY = document.querySelector('body');
 
@@ -20,7 +18,15 @@ const mainContainer = createContainer(BODY);
 
 const textArea = createElement('textarea', 'textarea', mainContainer);
 const keyContainer = createElement('div', 'key__container', mainContainer);
-const rowKeys0 = createElement('div', 'row-key__container', keyContainer);
+// const rowKeys0 = createElement('div', 'row-key__container', keyContainer);
 // console.log(keysObj.en);
 
-createKeys(keysObj['en']['row1'], rowKeys0);
+
+// createKeys(keysObj['en']['row0'], rowKeys0);
+
+Object.keys(keysObj['en']).forEach((item, index) => {
+    const rowKeysContainer = createElement('div', 'row-key__container', keyContainer);
+    createKeys(keysObj['en'][`row${index}`], rowKeysContainer);
+})
+// need to create action keys object
+console.log(actionKeysArr);

@@ -1,0 +1,31 @@
+.key__container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+     width: 770px;
+    margin: 10px;
+    justify-content: flex-start;
+    gap: 10px;
+}
+.row-key__container{
+    display: flex;    
+    gap: 10px;
+    flex-direction: row;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 3px;
+    background-color: $color-button;
+    color: $color-buttonText;
+    cursor: pointer;
+}
+
+.action-button{
+    width: 80px;
+}

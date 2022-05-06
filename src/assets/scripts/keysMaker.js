@@ -1,12 +1,24 @@
-function createKeys(obj, parent){
-    for (let key in obj) {
-        console.log(`key: ${key} value: ${obj[key]}`);
+let actionKeysArr = [];
+
+function createKeys(obj, parent){    
+    for (let key in obj) {       
         const newKey = document.createElement('buttom');
         newKey.className = 'button';
         newKey.textContent = obj[key];
-        newKey.setAttribute('data-name', key);
+        if (key.indexOf('key') == -1) {
+            newKey.setAttribute('data-type', 'action');           
+            newKey.classList.add('action-button');
+            actionKeysArr.push(key);
+        } 
+        newKey.setAttribute('data-name', key); 
         parent.appendChild(newKey);
     }
+    console.log(actionKeysArr);
 }
 
-export default {createKeys}
+function getActionButtons(){
+    let keyButton = document.querySelectorAll('.button');
+
+}
+
+export default {createKeys, actionKeysArr}
