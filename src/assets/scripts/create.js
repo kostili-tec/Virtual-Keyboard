@@ -12,7 +12,7 @@ function createDiv(container) {
 
 function createContainer(parent) {
   const container = document.createElement('div');
-  container.className = 'container';  
+  container.className = 'container';
   parent.appendChild(container);
   return container;
 }
@@ -25,5 +25,5 @@ function createElement(typeEl, className, parent) {
 }
 
 export default {
-  createDiv, createContainer, createElement
+  createDiv, createContainer, createElement,
 };

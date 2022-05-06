@@ -4,13 +4,12 @@ import keysMaker from './keysMaker';
 import '../styles/style.css';
 import '../scss/main.scss';
 
-
 const { createDiv, createContainer, createElement } = nodeMaker;
 
-const {createKeys, actionKeysArr} = keysMaker;
-
+const { createKeys, actionKeysArr } = keysMaker;
 
 const BODY = document.querySelector('body');
+
 
 // createDiv(BODY);
 
@@ -21,12 +20,37 @@ const keyContainer = createElement('div', 'key__container', mainContainer);
 // const rowKeys0 = createElement('div', 'row-key__container', keyContainer);
 // console.log(keysObj.en);
 
-
 // createKeys(keysObj['en']['row0'], rowKeys0);
 
-Object.keys(keysObj['en']).forEach((item, index) => {
-    const rowKeysContainer = createElement('div', 'row-key__container', keyContainer);
-    createKeys(keysObj['en'][`row${index}`], rowKeysContainer);
-})
+Object.keys(keysObj.en).forEach((item, index) => {
+  const rowKeysContainer = createElement('div', `row-key__container row${index}`, keyContainer);
+  console.log(item);
+  createKeys(keysObj.en[`row${index}`], rowKeysContainer);
+});
 // need to create action keys object
-console.log(actionKeysArr);
+
+
+function widthChanger(){
+    const rowContainer4 = document.querySelector('.row4');
+    const row4Elements = rowContainer4.querySelectorAll('.action-button');
+    row4Elements.forEach(item => {
+        item.classList.add('row4-button');
+        let dataAttribute = item.getAttribute('data-name');        
+        if (dataAttribute == 'space') {
+            console.log(item);
+            item.id ='space-button';
+        }
+    })
+    const rowContainer3 = document.querySelector('.row3');
+    const row3Elements = rowContainer3.querySelectorAll('.action-button');
+        row3Elements.forEach(item => {
+            let dataAttribute = item.getAttribute('data-name'); 
+            if (dataAttribute == 'shift') {
+                item.id = 'shift-left';
+            }
+        })
+    console.log(row4Elements);
+}
+
+widthChanger();
+// console.log(rowContainers);
