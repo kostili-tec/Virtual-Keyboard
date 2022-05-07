@@ -6,7 +6,7 @@ function createKeys(obj, parent) {
     const newKey = document.createElement('buttom');
     newKey.className = 'button';
     newKey.textContent = obj[key];
-    if (key.indexOf('key') == -1) {
+    if (key.indexOf('Key') == -1) {
       newKey.setAttribute('data-type', 'action');
       newKey.classList.add('action-button');
       actionKeysArr.push(key);

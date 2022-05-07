@@ -1,12 +1,15 @@
 import nodeMaker from './create';
 import keysObj from './keysObject';
 import keysMaker from './keysMaker';
+import keysEvents from './keysEvents';
 import '../styles/style.css';
 import '../scss/main.scss';
 
 const { createDiv, createContainer, createElement } = nodeMaker;
 
 const { createKeys, actionKeysArr } = keysMaker;
+
+const {keyDowned, keyUpped} = keysEvents;
 
 const BODY = document.querySelector('body');
 
@@ -54,3 +57,16 @@ function widthChanger(){
 
 widthChanger();
 // console.log(rowContainers);
+const allKeys = document.querySelectorAll('.button');
+console.log(allKeys);
+
+document.addEventListener('keydown', (event) => {
+    console.log(event.code);
+    let code = event.code;
+    keyDowned(code, allKeys);
+})
+
+document.addEventListener('keyup', (event) => {
+    let code = event.code;
+    setTimeout(keyUpped, 200, code, allKeys);
+})
