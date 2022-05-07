@@ -15,24 +15,18 @@ const {keyDowned, keyUpped} = keysEvents;
 
 const BODY = document.querySelector('body');
 
-
-// createDiv(BODY);
-
 const mainContainer = createContainer(BODY);
 
 const textArea = createElement('textarea', 'textarea', mainContainer);
 const keyContainer = createElement('div', 'key__container', mainContainer);
-// const rowKeys0 = createElement('div', 'row-key__container', keyContainer);
-// console.log(keysObj.en);
 
-// createKeys(keysObj['en']['row0'], rowKeys0);
-
-Object.keys(keysObj.en).forEach((item, index) => {
-  const rowKeysContainer = createElement('div', `row-key__container row${index}`, keyContainer);
-  console.log(item);
-  createKeys(keysObj.en[`row${index}`], rowKeysContainer);
+Object.keys(keysObj.en).forEach((item) => {
+  const rowKeysContainer = createElement('div', `row-key__container ${item}`, keyContainer); 
+//   createKeys(keysObj.en[`row${index}`], rowKeysContainer);
+  createKeys(keysObj.en[`${item}`], rowKeysContainer);
+//   createKeysV2(Object.entries(keysObj.en)[index], rowKeysContainer);
 });
-// need to create action keys object
+
 
 
 function widthChanger(){
@@ -41,8 +35,7 @@ function widthChanger(){
     row4Elements.forEach(item => {
         item.classList.add('row4-button');
         let dataAttribute = item.getAttribute('data-name');        
-        if (dataAttribute == 'Space') {
-            console.log(item);
+        if (dataAttribute == 'Space') {            
             item.id ='space-button';
         }
     })
@@ -53,22 +46,51 @@ function widthChanger(){
             if (dataAttribute == 'ShiftLeft') {
                 item.id = 'shift-left';
             }
-        })
-    console.log(row4Elements);
+        })    
 }
 
 widthChanger();
-// console.log(rowContainers);
+
 const allKeys = document.querySelectorAll('.button');
-console.log(actionButtonsArr);
 
 document.addEventListener('keydown', (event) => {
-    console.log(event.code);
+    console.log(event.key, event.code);
     let code = event.code;
     keyDowned(code, allKeys);
+    textArea.textContent += event.key;
 })
 
 document.addEventListener('keyup', (event) => {
     let code = event.code;
     setTimeout(keyUpped, 200, code, allKeys);
+})
+
+
+Object.keys(keysObj.en).forEach((item, index) => {
+    // console.log(keysObj.en[`${item}`]);    
+
+    // keysObj.en[index].forEach(el => {
+    //     console.log(el);
+    // })
+})
+
+// console.log(keysObj.en.row0);
+// console.log(Object.values(keysObj.en));
+
+// Object.values(keysObj.en).forEach(item => {
+//     // console.log(item);
+//     Object.values(item).forEach(el =>{
+//         console.log(el);
+//     })
+// })
+console.log(Object.entries(keysObj.en)[0]);
+Object.entries(keysObj.en).forEach(e => { // e == [row[n], {row[n]Values}]
+    console.log(e[1])       // e[1] == {row[n]Values}
+    Object.entries(e[1]).forEach(el => {  // el == [name, [lowCase, upCase]]
+        // console.log(el);
+        let name = el[0];
+        let upperCase = el[1][1];
+        // console.log(name, '=', upperCase);
+    })
+    console.log('end');
 })
