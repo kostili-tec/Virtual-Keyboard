@@ -1,5 +1,5 @@
 import nodeMaker from './create';
-import keysObj from './keysObject';
+import keysObject from './keysObject';
 import keysMaker from './keysMaker';
 import keysEvents from './keysEvents';
 import '../styles/style.css';
@@ -7,7 +7,9 @@ import '../scss/main.scss';
 
 const { createDiv, createContainer, createElement } = nodeMaker;
 
-const { createKeys, actionKeysArr } = keysMaker;
+const {keysObj, actionButtonsArr} = keysObject;
+
+const { createKeys } = keysMaker;
 
 const {keyDowned, keyUpped} = keysEvents;
 
@@ -39,7 +41,7 @@ function widthChanger(){
     row4Elements.forEach(item => {
         item.classList.add('row4-button');
         let dataAttribute = item.getAttribute('data-name');        
-        if (dataAttribute == 'space') {
+        if (dataAttribute == 'Space') {
             console.log(item);
             item.id ='space-button';
         }
@@ -48,7 +50,7 @@ function widthChanger(){
     const row3Elements = rowContainer3.querySelectorAll('.action-button');
         row3Elements.forEach(item => {
             let dataAttribute = item.getAttribute('data-name'); 
-            if (dataAttribute == 'shift') {
+            if (dataAttribute == 'ShiftLeft') {
                 item.id = 'shift-left';
             }
         })
@@ -58,7 +60,7 @@ function widthChanger(){
 widthChanger();
 // console.log(rowContainers);
 const allKeys = document.querySelectorAll('.button');
-console.log(allKeys);
+console.log(actionButtonsArr);
 
 document.addEventListener('keydown', (event) => {
     console.log(event.code);
