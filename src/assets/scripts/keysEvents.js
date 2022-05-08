@@ -16,4 +16,13 @@ function keyUpped(event, buttons){
     })
 }
 
-export default {keyDowned, keyUpped};
+function capsDeactivate(buttons) {
+    buttons.forEach(item => {
+        const dataName = item.getAttribute('data-name');
+        if (dataName == 'CapsLock'){
+            item.classList.remove('caps-active');
+        }           
+    })
+}
+
+export default {keyDowned, keyUpped,  capsDeactivate};

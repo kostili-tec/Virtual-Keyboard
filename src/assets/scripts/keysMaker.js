@@ -14,6 +14,7 @@ function createKeys(obj, parent) {
       if (actionButtonsArr.indexOf(nameValue, 0) != -1) {
         newKey.setAttribute('data-type', 'action');
         newKey.classList.add('action-button');
+        newKey.id = name.toLowerCase();
       }
       newKey.setAttribute('data-name', name);
       parent.appendChild(newKey);
@@ -46,6 +47,18 @@ function keysLowCase(obj, element){
     })
   })
 }
+function keysCapsOn(obj, element){
+  let elData = element.getAttribute('data-name');
+  Object.keys(obj).forEach((item) => {
+    Object.entries(obj[`${item}`]).forEach(valueArr => {
+      const name = valueArr[0];
+      const nameValue = valueArr[1][1];
+      if (elData == name && element.textContent.match(/[\p{Alpha}\p{M}]/gu) != null) {       
+        element.textContent = nameValue;
+      }
+    })
+  })
+}
 
 function changeButtonsText(caseUpLow, obj, buttons) {
   buttons.forEach(item => {
@@ -56,4 +69,4 @@ function changeButtonsText(caseUpLow, obj, buttons) {
   })
 }
 
-export default { createKeys, keysUpCase, keysLowCase };
+export default { createKeys, keysUpCase, keysLowCase, keysCapsOn };
