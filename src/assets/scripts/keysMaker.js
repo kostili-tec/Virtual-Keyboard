@@ -21,13 +21,30 @@ function createKeys(obj, parent) {
   // })
 }
 
-function keysUp(obj, element){
+
+function keysUpCase(obj, element){
   let elData = element.getAttribute('data-name');
-  for (const key in obj) {
-    if (elData == key) {
-      element.textContent = obj[key][1];
-    }
-  }
+  Object.keys(obj).forEach((item) => {
+    Object.entries(obj[`${item}`]).forEach(valueArr => {
+      const name = valueArr[0];
+      const nameValue = valueArr[1][1];
+      if (elData == name) {
+        element.textContent = nameValue;
+      }
+    })
+  })
+}
+function keysLowCase(obj, element){
+  let elData = element.getAttribute('data-name');
+  Object.keys(obj).forEach((item) => {
+    Object.entries(obj[`${item}`]).forEach(valueArr => {
+      const name = valueArr[0];
+      const nameValue = valueArr[1][0];
+      if (elData == name) {
+        element.textContent = nameValue;
+      }
+    })
+  })
 }
 
 function changeButtonsText(caseUpLow, obj, buttons) {
@@ -39,4 +56,4 @@ function changeButtonsText(caseUpLow, obj, buttons) {
   })
 }
 
-export default { createKeys };
+export default { createKeys, keysUpCase, keysLowCase };

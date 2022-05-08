@@ -9,7 +9,7 @@ const { createDiv, createContainer, createElement } = nodeMaker;
 
 const {keysObj, actionButtonsArr} = keysObject;
 
-const { createKeys } = keysMaker;
+const { createKeys, keysUpCase, keysLowCase } = keysMaker;
 
 const {keyDowned, keyUpped} = keysEvents;
 
@@ -26,8 +26,6 @@ Object.keys(keysObj.en).forEach((item) => {
   createKeys(keysObj.en[`${item}`], rowKeysContainer);
 //   createKeysV2(Object.entries(keysObj.en)[index], rowKeysContainer);
 });
-
-
 
 function widthChanger(){
     const rowContainer4 = document.querySelector('.row4');
@@ -53,44 +51,66 @@ widthChanger();
 
 const allKeys = document.querySelectorAll('.button');
 
-document.addEventListener('keydown', (event) => {
-    console.log(event.key, event.code);
+document.addEventListener('keydown', (event) => {    
     let code = event.code;
     keyDowned(code, allKeys);
     textArea.textContent += event.key;
+    if(event.shiftKey) {
+        allKeys.forEach(item => {
+            keysUpCase(keysObj.en, item);
+        })
+        // keysUpCase(keysObj.en, allKeys[0]);
+    }
 })
 
-document.addEventListener('keyup', (event) => {
+document.addEventListener('keyup', (event) => {   
     let code = event.code;
     setTimeout(keyUpped, 200, code, allKeys);
+    if(event.key == 'Shift') {       
+        allKeys.forEach(item => {
+            keysLowCase(keysObj.en, item);
+        })
+    }
 })
 
+// console.log(allKeys);
 
-Object.keys(keysObj.en).forEach((item, index) => {
-    // console.log(keysObj.en[`${item}`]);    
+class Buttons {
+    constructor(key, typeCase){
+      this.key = key;
+      this.typeCase = typeCase;
+      this.keyText = key.textContent;
+    }
+    toUpperCase(){
+      
+    }
+  }
 
-    // keysObj.en[index].forEach(el => {
-    //     console.log(el);
-    // })
-})
+// Object.keys(keysObj.en).forEach((item, index) => {
+//     // console.log(keysObj.en[`${item}`]);    
 
-// console.log(keysObj.en.row0);
-// console.log(Object.values(keysObj.en));
-
-// Object.values(keysObj.en).forEach(item => {
-//     // console.log(item);
-//     Object.values(item).forEach(el =>{
-//         console.log(el);
-//     })
+//     // keysObj.en[index].forEach(el => {
+//     //     console.log(el);
+//     // })
 // })
-console.log(Object.entries(keysObj.en)[0]);
-Object.entries(keysObj.en).forEach(e => { // e == [row[n], {row[n]Values}]
-    console.log(e[1])       // e[1] == {row[n]Values}
-    Object.entries(e[1]).forEach(el => {  // el == [name, [lowCase, upCase]]
-        // console.log(el);
-        let name = el[0];
-        let upperCase = el[1][1];
-        // console.log(name, '=', upperCase);
-    })
-    console.log('end');
-})
+
+// // console.log(keysObj.en.row0);
+// // console.log(Object.values(keysObj.en));
+
+// // Object.values(keysObj.en).forEach(item => {
+// //     // console.log(item);
+// //     Object.values(item).forEach(el =>{
+// //         console.log(el);
+// //     })
+// // })
+// console.log(Object.entries(keysObj.en)[0]);
+// Object.entries(keysObj.en).forEach(e => { // e == [row[n], {row[n]Values}]
+//     console.log(e[1])       // e[1] == {row[n]Values}
+//     Object.entries(e[1]).forEach(el => {  // el == [name, [lowCase, upCase]]
+//         // console.log(el);
+//         let name = el[0];
+//         let upperCase = el[1][1];
+//         // console.log(name, '=', upperCase);
+//     })
+//     console.log('end');
+// })
