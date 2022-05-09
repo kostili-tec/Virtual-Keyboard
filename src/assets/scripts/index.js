@@ -25,6 +25,9 @@ const BODY = document.querySelector('body');
 const mainContainer = createContainer(BODY);
 const textArea = createElement('textarea', 'textarea', mainContainer);
 const keyContainer = createElement('div', 'key__container', mainContainer);
+const disc = createElement('p', '', mainContainer);
+const discText = 'Клавиатура создана в операционной системе Windows.\n Для переключения языка комбинация: ctrl + alt';
+disc.textContent = discText;
 
 // =============== DOM VARIABLES END =================== //
 function setLocalStorage(value) {
@@ -145,11 +148,12 @@ document.addEventListener('keydown', (event) => {
 });
 
 document.addEventListener('keyup', (event) => {
+  const currentLang = getLocalStorage();
   const { code } = event;
   setTimeout(keyUpped, 200, code, allKeys);
   if (event.key === 'Shift') {
     allKeys.forEach((item) => {
-      keysLowCase(keysObj.en, item);
+      keysLowCase(keysObj[currentLang], item);
     });
   }
 });
