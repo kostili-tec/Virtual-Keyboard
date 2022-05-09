@@ -77,7 +77,6 @@ widthChanger();
 
 const allKeys = document.querySelectorAll('.button');
 const capsLockKey = document.querySelector('#capslock');
-console.log(capsLockKey)
 
 document.addEventListener('keydown', (event) => {    
     let code = event.code;
@@ -112,15 +111,21 @@ document.addEventListener('keydown', (event) => {
         if (currentLang == 'ru') {
             setLocalStorage('en');
             currentLang = getLocalStorage();
-            allKeys.forEach(item => {               
+
+            capsOn == false ? allKeys.forEach(item => {               
                 keysLowCase(keysObj[currentLang], item);
-            })        
+            }) : allKeys.forEach(item => {               
+                keysUpCase(keysObj[currentLang], item);
+            })         
+              
         } else if (currentLang == 'en') {
             setLocalStorage('ru');
             currentLang = getLocalStorage();
-            allKeys.forEach(item => {               
+            capsOn == false ? allKeys.forEach(item => {               
                 keysLowCase(keysObj[currentLang], item);
-            })    
+            }) : allKeys.forEach(item => {               
+                keysUpCase(keysObj[currentLang], item);
+            })         
         }       
     }
     // ================ SET LANG END ===================== //
@@ -136,7 +141,28 @@ document.addEventListener('keyup', (event) => {
     }
 })
 
-// console.log(allKeys);
+class ClickButtons {
+    constructor(elem, text) {
+        this._elem = elem;        
+        elem.onmousedown = this.onmouseDown.bind(this)
+        elem.onmouseup = this.onmouseUp.bind(this)        
+        this.text = text;
+    }
+    onmouseDown(event) {
+        if (event.target.classList.contains('button')) {           
+            event.target.classList.add('button-press')
+            let action = event.target.textContent;
+            this.text.textContent += action;
+        }
+    }
+    onmouseUp(event) {       
+        if (event.target.classList.contains('button-press')) {
+            event.target.classList.remove('button-press');
+        }
+    }
+}
+
+new ClickButtons(keyContainer, textArea);
 
 class Buttons {
     constructor(key, typeCase){
