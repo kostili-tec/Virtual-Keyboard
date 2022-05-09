@@ -7,11 +7,11 @@ import '../scss/main.scss';
 
 const { createContainer, createElement } = nodeMaker;
 
-const {keysObj} = keysObject;
+const {keysObj, actionButtonsArr} = keysObject;
 
 const { createKeys, keysUpCase, keysLowCase, keysCapsOn } = keysMaker;
 
-const {keyDowned, keyUpped} = keysEvents;
+const {keyDowned, keyUpped, getCurrentButton, printToTextarea} = keysEvents;
 
 let capsOn = false;
 let lang = 'en';
@@ -79,12 +79,16 @@ const allKeys = document.querySelectorAll('.button');
 const capsLockKey = document.querySelector('#capslock');
 
 document.addEventListener('keydown', (event) => {    
-    let code = event.code;
-    keyDowned(code, allKeys);
-    textArea.textContent += event.key;
+    let code = event.code;   
+    event.preventDefault();
+    const currentButton = getCurrentButton(code, allKeys);
+    const currentButtonText = currentButton.textContent;    
+    keyDowned(code, allKeys);   
+    printToTextarea(textArea, currentButton);
+    
     if(event.shiftKey) {
         allKeys.forEach(item => {
-            keysUpCase(keysObj.en, item);
+            keysUpCase(keysObj[getLocalStorage()], item);
         })      
     }
     // =============== CAPS LOCK ================ //
