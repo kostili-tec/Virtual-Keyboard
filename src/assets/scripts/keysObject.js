@@ -40,11 +40,11 @@ const keysObj = {
       KeyF: ['f', 'F'],
       KeyG: ['g', 'G'],
       KeyH: ['h', 'H'],
-      KeyJ: ['j','J'],
+      KeyJ: ['j', 'J'],
       KeyK: ['k', 'K'],
       KeyL: ['l', 'L'],
       Semicolon: [';', ':'],
-      Quote: ['\'', '\"'],
+      Quote: ['\'', '\''],
       Backslash: ['\\', '|'],
       Enter: ['Enter', 'Enter'],
     },
@@ -77,7 +77,7 @@ const keysObj = {
   },
   ru: {
     row0: {
-      Backquote: ['ё', 'Ё'], 
+      Backquote: ['ё', 'Ё'],
       Digit1: ['1', '!'],
       Digit2: ['2', '@'],
       Digit3: ['3', '#'],
@@ -116,7 +116,7 @@ const keysObj = {
       KeyF: ['а', 'А'],
       KeyG: ['п', 'П'],
       KeyH: ['р', 'Р'],
-      KeyJ: ['о','О'],
+      KeyJ: ['о', 'О'],
       KeyK: ['л', 'Л'],
       KeyL: ['д', 'Д'],
       Semicolon: ['ж', 'Ж'],
@@ -153,8 +153,8 @@ const keysObj = {
   },
 };
 
-const actionButtonsArr = ['Backspace', 'Tab', 'Delete', 
-'Caps Lock', 'Enter', 'Shift', 'Ctrl', 'Win', 
-'Alt', 'Space'];
+const actionButtonsArr = ['Backspace', 'Tab', 'Delete',
+  'Caps Lock', 'Enter', 'Shift', 'Ctrl', 'Win',
+  'Alt', 'Space'];
 
-export default {keysObj, actionButtonsArr};
+export default { keysObj, actionButtonsArr };
